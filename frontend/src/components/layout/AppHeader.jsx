@@ -51,7 +51,7 @@ export default function AppHeader() {
                 options={crypto.map((coin) => ({
                     label: coin.name,
                     value: coin.id,
-                    icon: coin.icon,
+                    icon: coin.image,
                 }))}
                 optionRender={(option) => (
                     <Space>

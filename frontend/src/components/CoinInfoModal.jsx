@@ -5,33 +5,26 @@ import Coininfo from './Coininfo'
 export default function CoinInfoModal({ coin }) {
     return (
         <>
-            <Coininfo coin={coin} withSymbol />
+            <Coininfo coin={coin} />
             <Divider />
-            <Typography.Paragraph>
-                <Typography.Text strong>1 hour:</Typography.Text>
-                <Tag color={coin.priceChange1h > 0 ? 'green' : 'red'}>{coin.priceChange1h}%</Tag>
-                <Typography.Text strong>1 day:</Typography.Text>
-                <Tag color={coin.priceChange1d > 0 ? 'green' : 'red'}>{coin.priceChange1d}%</Tag>
-                <Typography.Text strong>1 week:</Typography.Text>
-                <Tag color={coin.priceChange1w > 0 ? 'green' : 'red'}>{coin.priceChange1w}%</Tag>
+            <Typography.Paragraph style={{ textAlign: 'center', fontWeight: 'bold' }} >
+                <Typography.Text strong>1 day: </Typography.Text>
+                <Tag color={coin.price_change_percentage_24h && coin.price_change_percentage_24h > 0 ? 'green' : 'red'}>
+                    {coin.price_change_percentage_24h !== 'N/A' ? `${coin.price_change_percentage_24h}%` : 'N/A'}
+                </Tag>
             </Typography.Paragraph>
             <Typography.Paragraph>
-                <Typography.Text strong>Price:</Typography.Text>
-                {coin.price.toFixed(2)}$
+                <Typography.Text strong>Price: </Typography.Text>
+                {coin.current_price ? `${coin.current_price.toFixed(2)}$` : 'N/A'}
             </Typography.Paragraph>
             <Typography.Paragraph>
-                <Typography.Text strong>Price BTC:</Typography.Text>
-                {coin.priceBtc}
+                <Typography.Text strong>Rank: </Typography.Text>
+                {coin.market_cap_rank ? `${coin.market_cap_rank} of 20` : 'N/A'}
             </Typography.Paragraph>
             <Typography.Paragraph>
-                <Typography.Text strong>Market Cap:</Typography.Text>
-                {coin.marketCap}$
+                <Typography.Text strong>Market Cap: </Typography.Text>
+                {coin.market_cap ? `${coin.market_cap.toLocaleString()}$` : 'N/A'}
             </Typography.Paragraph>
-            {coin.contractAddress && (<Typography.Paragraph>
-                <Typography.Text strong>Contract Address:</Typography.Text>
-                {coin.contracrAdress}
-            </Typography.Paragraph>)}
         </>
-    )
-
+    );
 }
